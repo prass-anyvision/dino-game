@@ -23,9 +23,11 @@ screen = pygame.display.set_mode(scr_size)
 clock = pygame.time.Clock()
 pygame.display.set_caption("T-Rex Rush")
 
-jump_sound = pygame.mixer.Sound('sprites/jump.wav')
-die_sound = pygame.mixer.Sound('sprites/die.wav')
-checkPoint_sound = pygame.mixer.Sound('sprites/checkPoint.wav')
+my_folder = os.path.split(os.path.abspath(__file__))[0]
+sprites_folder = os.path.join(my_folder, "sprites")
+jump_sound = pygame.mixer.Sound(os.path.join(sprites_folder, "jump.wav"))
+die_sound = pygame.mixer.Sound(os.path.join(sprites_folder, "die.wav"))
+checkPoint_sound = pygame.mixer.Sound(os.path.join(sprites_folder, "checkPoint.wav"))
 
 def load_image(
     name,
@@ -34,7 +36,7 @@ def load_image(
     colorkey=None,
     ):
 
-    fullname = os.path.join('sprites', name)
+    fullname = os.path.join(sprites_folder, name)
     image = pygame.image.load(fullname)
     image = image.convert()
     if colorkey is not None:
@@ -55,7 +57,7 @@ def load_sprite_sheet(
         scaley = -1,
         colorkey = None,
         ):
-    fullname = os.path.join('sprites',sheetname)
+    fullname = os.path.join(sprites_folder,sheetname)
     sheet = pygame.image.load(fullname)
     sheet = sheet.convert()
 
